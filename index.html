@@ -384,7 +384,9 @@
 
                 <div class="panel-content-block">
                     <div class="contact-card gsap-up">
-                        <form class="contact-form" action="#" method="POST">
+                        <form class="contact-form" id="contact-form">
+                            <input type="hidden" name="access_key" value="0236b7de-f738-4d1d-8fa2-8ca0cf80b885">
+                            <input type="hidden" name="subject" value="New message from portfolio">
                             
                             <div class="form-group">
                                 <label for="form-name" class="form-label">01 / Your Name</label>
@@ -402,9 +404,10 @@
                             </div>
 
                             <div class="form-submit-wrap">
-                                <button type="submit" class="btn-primary">Send Message ↗</button>
+                                <button type="submit" class="btn-primary" id="submit-btn">Send Message ↗</button>
                             </div>
 
+                            <p id="form-status" style="font-family: var(--font-mono); font-size: 0.85rem; margin-top: 12px;"></p>
                         </form>
                     </div>
                 </div>

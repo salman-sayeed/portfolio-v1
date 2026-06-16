@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTypewriter();
     initLiveClock();
     initNavbarScroll();
+    initContactForm();
 });
 
 /* 1. TYPEWRITER EFFECT ENGINE */
@@ -151,3 +152,44 @@ document.addEventListener('click', function(e) {
         history.pushState(null, '', window.location.pathname);
     }, 0);
 });
+
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const status = document.getElementById('form-status');
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        status.textContent = '';
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+
+        try {
+            const res = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const result = await res.json();
+
+            if (result.success) {
+                status.textContent = 'Message sent! I\'ll get back to you soon.';
+                status.style.color = 'var(--accent2)';
+                form.reset();
+            } else {
+                throw new Error('Failed');
+            }
+        } catch {
+            status.textContent = 'Something went wrong. Try emailing me directly.';
+            status.style.color = '#ef4444';
+        } finally {
+            submitBtn.textContent = 'Send Message ↗';
+            submitBtn.disabled = false;
+        }
+    });
+}
