@@ -1,0 +1,915 @@
+/* ==========================================================================
+   1. NAVIGATION & LAYOUT BASE
+   ========================================================================== */
+.site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+    background: transparent;
+    transition: background 0.3s ease, padding 0.3s ease;
+    padding: 24px 0;
+}
+
+.nav-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo a {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--text);
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+
+.nav-item {
+    font-size: 0.95rem;
+    color: var(--muted);
+    transition: color 0.2s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: var(--text);
+}
+
+.nav-toggle {
+    display: none; /* Hidden on desktop */
+}
+
+
+
+
+/* ==========================================================================
+   2. HERO SECTION (REVISED)
+   ========================================================================== */
+.hero-section {
+    height: 100vh; /* Force exactly the height of the viewport */
+    display: flex;
+    align-items: center; /* Center content vertically within the viewport */
+    padding: 80px 40px 0 40px; /* Top padding accommodates fixed navbar, 0 bottom */
+    max-width: 1300px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevents stray elements from causing scrollbars */
+}
+
+.hero-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 60px; /* Slightly tighter gap to save vertical space on smaller screens */
+    align-items: center; /* Vertically align left and right columns to each other */
+}
+
+/* Hero Left Column Content Flow */
+.hero-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-name {
+    font-size: clamp(3.5rem, 7.5vw, 7rem);
+    font-weight: 700;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+.name-line {
+    display: block;
+}
+
+.hero-typewriter-container {
+    margin-top: 16px;
+    font-family: var(--font-mono);
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.typewriter-cursor {
+    display: inline-block;
+    margin-left: 2px;
+    animation: blink 0.8s infinite;
+}
+
+.hero-about-brief {
+    margin-top: 32px; /* Nicely separated below typewriter */
+}
+
+.hero-about-brief p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 460px;
+}
+
+.hero-cta-wrapper {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px; /* Spacing between the two buttons */
+    align-items: center;
+}
+
+/* Premium Button Style */
+/* Premium Button Style */
+.btn-primary {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    color: var(--text2) !important; /* Forces white text visibility */
+    background: var(--btn); /* Sleek dark background contrast */
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.btn-primary:hover {
+    background: #222222;
+    transform: translateY(-2px);
+}
+
+/* New Secondary Resume Button Style */
+.btn-secondary {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 1px solid var(--border2); 
+    border-radius: 15px;
+    color: var(--text); 
+    background: transparent; /* Clean minimalist outline border style */
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.btn-secondary:hover {
+    color: var(--text2);
+    background: var(--bg2); 
+    transform: translateY(-2px); 
+}
+
+/* Hero Right Column: Image & Meta Data */
+.hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 420px; /* Slightly scaled down maximum width */
+    max-height: 75vh; /* Prevents the image from bursting out of short viewports */
+    justify-self: end;
+}
+
+.hero-image-wrapper {
+    width: 100%; 
+    aspect-ratio: 4 / 5; 
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    overflow: hidden;
+    border-radius: 15px;
+
+}
+
+.hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents stretching and crops beautifully to your 4:5 frame */
+    object-position: center;
+    display: block;
+}
+
+/* Meta Data & Live Date Styles */
+.hero-meta-data {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.meta-label {
+    color: var(--muted);
+}
+
+.meta-value {
+    color: var(--text);
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+
+
+/* ==========================================================================
+   3. PANEL LAYOUT & SKILLS SECTION
+   ========================================================================== */
+.panel-section {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    padding: 140px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2; /* Sits cleanly on top of the hero tier */
+    border-top: 1px solid var(--bg3) !important;
+}
+
+.skills-section {
+    background: var(--bg3); /* Darker elevated card background */
+    border-top: 1px solid var(--border);
+}
+
+.panel-container {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr; /* Section title left, contents right */
+    gap: 80px;
+    align-items: start;
+}
+
+/* Panel Left Anchor Heading */
+.panel-header-block {
+    position: sticky;
+    top: 140px; /* Keeps the title locked in view on scroll */
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text2);
+}
+
+.section-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 12px;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+
+/* Panel Right Content Grid Arrangements */
+.panel-content-block {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+}
+
+.skills-category-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.category-title {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* Clean, Premium Tech Badges */
+.skill-pill {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    background: var(--bg3); /* Deep contrasting badge background */
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text2);
+    transition: all 0.25s ease;
+}
+
+.skill-pill:hover {
+    border-color: var(--accent2);
+    color: var(--accent2);
+    transform: translateY(-2px);
+}
+
+/* .gsap-up, .gsap-fade {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+} */
+
+/* ==========================================================================
+   4. WORKS & PUBLICATIONS SECTION
+   ========================================================================== */
+.works-section {
+    background: var(--bg3); /* Same background depth as Skills for seamless stack transition */
+    border-top: 1px solid var(--border);
+}
+
+.works-subsection {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* 2-Column Responsive Project Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+.project-card {
+    background: var(--bg2); /* Subtle contrast shift for card background */
+    border: 2px solid var(--border);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s ease;
+}
+
+.project-card:hover {
+    border-color: var(--accent2);
+}
+
+.project-img-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+}
+
+.project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.2); /* Premium subtle zoom on image container */
+}
+
+.project-meta {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+}
+
+.project-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text2);
+}
+
+.project-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--muted);
+}
+
+.project-link {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: auto; /* Pushes links neatly to the baseline */
+    align-self: flex-start;
+}
+
+.project-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 16px 0; /* Creates perfect separation between desc and link */
+}
+
+.tech-badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.btn-viewallprojects {
+    width: 65%;
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 1px solid #222222; /* Dark border */
+    border-radius: 15px;
+    color: var(--text); /* Dark text */
+    background: var(--bg);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-viewallprojects:hover {
+    background: var(--accent);; /* Darker light color on hover */
+    border-color: #000000; /* Distinct crisp border on hover */
+    color: var(--text2);
+    transform: translateY(-2px); /* Matches the primary button lift */
+}
+
+/* Editorial Minimalist Publication Lines */
+.publications-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.pub-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 40px;
+}
+
+.pub-left {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.pub-date {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--accent2);
+    padding-top: 2px;
+}
+
+.pub-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text2);
+    max-width: 600px;
+}
+
+.pub-right {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   5. EDUCATION SECTION
+   ========================================================================== */
+.education-section {
+    background: var(--bg3);
+    border-top: 1px solid var(--border);
+}
+
+.education-timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.edu-row {
+    display: grid;
+    grid-template-columns: 0.3fr 1.7fr; /* Keeps timeline dates tucked precisely to the left */
+    gap: 40px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.edu-row:first-child {
+    padding-top: 0;
+}
+
+.edu-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.edu-date {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--accent2);
+    display: inline-block;
+    padding-top: 4px;
+}
+
+.edu-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.edu-meta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.edu-degree {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text2);
+    letter-spacing: -0.01em;
+}
+
+.edu-grade {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text2);
+    white-space: nowrap;
+}
+
+.edu-institution {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+.edu-stream {
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+/* Specialization Token Badges */
+.edu-specialization {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.spec-tag {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+}
+
+/* ==========================================================================
+   6. ABOUT SECTION
+   ========================================================================== */
+.about-section {
+    background: var(--bg3);
+    border-top: 1px solid var(--border);
+}
+
+.about-editorial-wrap {
+    max-width: 800px;
+}
+
+.about-headline {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text2);
+    letter-spacing: -0.02em;
+}
+
+/* 2-Column Split for Body Paragraphs */
+.about-body-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+}
+
+.about-body-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.about-body-col p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.about-philosophy-highlight {
+    font-family: var(--font-mono);
+    font-size: 0.95rem !important;
+    color: var(--accent2) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 12px;
+}
+
+/* ==========================================================================
+   7. CONTACT SECTION
+   ========================================================================== */
+.contact-section {
+    background: var(--bg3);
+    border-top: 1px solid var(--border);
+    padding-bottom: 140px; /* Generous breathing space before footer */
+}
+
+.contact-huge-title {
+    font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text2);
+}
+
+.contact-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px;
+    width: 100%;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Premium Sleek Minimalist Fields */
+.form-input {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border) !important;
+    color: var(--text2);
+    transition: border-color 0.3s ease;
+}
+
+.form-input::placeholder {
+    color: var(--muted);
+    opacity: 0.5;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent2) !important;
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-submit-wrap {
+    margin-top: 12px;
+    align-self: flex-start;
+}
+
+/* ==========================================================================
+   8. GLOBAL FOOTER COMPONENT
+   ========================================================================== */
+.site-footer {
+    background: var(--footer); /* Steps back into deep black space */
+    border-top: 1px solid var(--bg3) !important;
+    padding: 80px 40px 40px 40px;
+    width: 100%;
+    position: relative;
+    z-index: 10; /* Anchor base layer */
+}
+
+.footer-grid-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 64px;
+    padding-bottom: 60px;
+}
+
+.footer-logo {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--text2);
+}
+
+.footer-tag {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-top: 12px;
+    max-width: 280px;
+    line-height: 1.5;
+}
+
+.footer-col-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+}
+
+.footer-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-list a {
+    font-size: 0.95rem;
+    color: var(--muted);
+    transition: color 0.15s ease;
+}
+
+.footer-list a:hover {
+    color: var(--text2);
+}
+
+/* Baseline Bar Styling */
+.footer-bottom-strip {
+    max-width: 1300px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.footer-speed-token {
+    color: var(--muted);
+}
+
+/* ==========================================================================
+   9. GSAP ENGINE INITIAL STATES
+   ========================================================================== */
+.panel-section .gsap-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: none !important;
+}
+
+.panel-section .gsap-fade {
+    opacity: 0;
+    transition: none !important;
+}
+/* BACK TO TOP  */
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    left: 60px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent2);
+    border: 1px solid var(--border-panel);
+    color: var(--text2);
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+    pointer-events: none;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+#back-to-top:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+
+
+/* Works Responsive Adjustments */
+@media (max-width: 1200px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* Switch to single-column cards on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .edu-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 24px 0;
+    }
+    .edu-meta-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .edu-degree {
+        font-size: 1.2rem;
+    }
+    .about-body-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .contact-card {
+        padding: 24px;
+    }
+    .contact-form {
+        gap: 32px;
+    }
+    .footer-grid-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .footer-bottom-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+}

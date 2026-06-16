@@ -1,0 +1,28 @@
+:root {
+  /* Creamy Dark Palette */
+  --bg:      #F8F5F0;  
+  --bg2:     #1b2636;  
+  /* --bg3:     #1E293B;  */
+  --bg3:     #0c1523; 
+
+  --text:    #1F2937;  
+  --text2:   #F8F5F0; 
+  --muted:   #86898f;  
+  --border:  #D6D3D1; 
+  --border2:  #1E293B;;
+  --accent:  #1770ff; 
+  --accent2: #0EA5E9;
+  --accent2-hover:#0284C7;
+
+  --footer: #040a13;
+
+  --btn: #212f45;
+  --card-hover:   #334155; 
+  --button:  #26344a;
+  --button-hover: #031534;
+
+
+  /* Typography */
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-main: 'Space Grotesk', sans-serif;
+}
