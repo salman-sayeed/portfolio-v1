@@ -57,7 +57,7 @@
    2. HERO SECTION (REVISED)
    ========================================================================== */
 .hero-section {
-    height: 100vh; /* Force exactly the height of the viewport */
+    min-height: 100vh;
     display: flex;
     align-items: center; /* Center content vertically within the viewport */
     padding: 80px 40px 0 40px; /* Top padding accommodates fixed navbar, 0 bottom */
@@ -870,46 +870,143 @@
     border-color: var(--accent);
 }
 
+/* ==========================================================================
+   10.  RESPONSIVENESS (TABLET & MOBILE)
+   ========================================================================== */
 
+/* Tablet & Smaller Desktop Adjustments */
+/* Tablet & Smaller Desktop Adjustments */
+@media (max-width: 1024px) {
+    .hero-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 120px 24px 60px 24px; /* More breathing room for top nav */
+        overflow: visible;
+    }
 
-/* Works Responsive Adjustments */
-@media (max-width: 1200px) {
+    .hero-container {
+        grid-template-columns: 1fr; /* Stack columns */
+        gap: 48px;
+        text-align: left;
+    }
+
+    .hero-right {
+        justify-self: start; /* Align to the left on stacked view */
+        max-width: 100%;
+    }
+
+    .panel-section {
+        padding: 80px 24px;
+    }
+
+    .panel-container {
+        grid-template-columns: 1fr; /* Move title on top of content */
+        gap: 40px;
+    }
+
+    .panel-header-block {
+        position: relative; /* Turn off sticky mode for clean stacked order */
+        top: 0;
+    }
+    
+    .btn-viewallprojects {
+        width: 100%; /* Button scales up nicely to fill the narrow width */
+        text-align: center;
+    }
     .projects-grid {
-        grid-template-columns: 1fr; /* Switch to single-column cards on smaller screens */
+        grid-template-columns: 1fr; /* Single project card per row */
+        gap: 24px; /* Slightly tighter gap for cohesive scrolling */
     }
 }
 
+/* Mobile Screens */
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 0 24px;
+    }
+
+    .nav-links {
+        display: none; /* If you're building a mobile hamburger toggle menu later */
+    }
+
+    .hero-cta-wrapper {
+        flex-direction: column; /* Stack primary and secondary buttons on tiny screens */
+        align-self: stretch;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+
+    .pub-row {
+        flex-direction: column; /* Stack publication title and journal origin */
+        gap: 12px;
+        padding: 20px 0;
+    }
+
+    .pub-left {
+        gap: 16px;
+    }
+
+    .pub-right {
+        text-align: left;
+        padding-left: 48px; /* Perfectly aligns under the title text */
+    }
+
     .edu-row {
         grid-template-columns: 1fr;
         gap: 12px;
         padding: 24px 0;
     }
+
     .edu-meta-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
     }
+
     .edu-degree {
         font-size: 1.2rem;
     }
+
     .about-body-grid {
         grid-template-columns: 1fr;
         gap: 32px;
+        margin-top: 24px;
+        padding-top: 24px;
     }
+
     .contact-card {
         padding: 24px;
     }
+
     .contact-form {
         gap: 32px;
     }
+
     .footer-grid-container {
         grid-template-columns: 1fr;
         gap: 40px;
     }
+
     .footer-bottom-strip {
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
+    }
+
+    .project-meta {
+        padding: 20px; /* Slight reduction to give text more horizontal space */
+    }
+    
+    .project-title {
+        font-size: 1.15rem; /* Better scale for mobile reading */
+    }
+    
+    #back-to-top {
+        left: auto;
+        right: 24px; /* Moves arrow out of the text lane to bottom right corner */
+        bottom: 24px;
     }
 }
